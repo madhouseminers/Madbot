@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 import gql from "graphql-tag";
-import { apolloClient } from "./graphql";
+import { apolloClient } from "../graphql";
 
 export default async (outcome, params, msg: Message) => {
   const formatErrorMessage = `The format is \`!${outcome} [id] [reason]\`. Please try again`;
@@ -64,5 +64,7 @@ export default async (outcome, params, msg: Message) => {
     );
   }
 
-  return msg.reply(`Application **${id}** for **${displayName}** has been updated to ${outcome}.`);
+  return msg.reply(
+    `Application **${id}** for **${displayName}** has been updated to ${outcome}.`
+  );
 };

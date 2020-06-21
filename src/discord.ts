@@ -1,34 +1,42 @@
 import { Client } from "discord.js";
-import whitelist from "./whitelist";
+import whitelist from "./commands/whitelist";
+import dns from "./commands/dns";
 
-const client = new Client();
+const discord = new Client();
 
 const prefix = "!";
 
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+discord.on("ready", () => {
+  console.log(`Logged in as ${discord.user.tag}!`);
 });
 
-client.on("message", (message) => {
+discord.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
   message.content = message.content.substr(prefix.length);
   const commandPieces = message.content.split(" ");
   const command = commandPieces.shift();
 
-  switch (command) {
+  switch (command.toLowerCase()) {
     case "ping":
       message.reply("Pong!");
       break;
     case "accept":
     case "info":
     case "decline":
-      whitelist(command, commandPieces, message);
+      if (message.channel.id === process.env.DISCORD_CHANNEL) {
+        whitelist(command, commandPieces, message);
+      }
+      break;
+    case "dns":
+      if (message.guild.id === process.env.STAFF_GUILD) {
+        dns(commandPieces, message);
+      }
       break;
   }
 });
 
-client
+discord
   .login(process.env.DISCORD_TOKEN)
   .then(() => console.log("Logged into discord"));
 
-export default client;
+export default discord;

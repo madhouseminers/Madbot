@@ -2,7 +2,7 @@ import { MessageEmbed, TextChannel } from "discord.js";
 import * as moment from "moment";
 import gql from "graphql-tag";
 import { apolloClient } from "./graphql";
-import client from "./discord";
+import discord from "./discord";
 
 const query = gql`
   subscription {
@@ -66,10 +66,10 @@ observe.subscribe(async (result) => {
         })
         .setTimestamp();
 
-      await (client.channels.cache.get(
+      await (discord.channels.cache.get(
         process.env.DISCORD_CHANNEL
       ) as TextChannel).send(exampleEmbed);
-      await (client.channels.cache.get(
+      await (discord.channels.cache.get(
         process.env.DISCORD_CHANNEL
       ) as TextChannel).send(
         `You can respond to this application here.\n\nTo accept type \`\`\`!accept ${whitelist.id} [reason]\`\`\`\nTo request more information type \`\`\`!info ${whitelist.id} [reason]\`\`\`\nTo decline type \`\`\`!decline ${whitelist.id} [reason]\`\`\``
