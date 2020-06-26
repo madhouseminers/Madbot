@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 import { MessageEmbed, TextChannel } from "discord.js";
 import * as moment from "moment";
 import gql from "graphql-tag";
@@ -75,5 +76,36 @@ observe.subscribe(async (result) => {
         `You can respond to this application here.\n\nTo accept type \`\`\`!accept ${whitelist.id} [reason]\`\`\`\nTo request more information type \`\`\`!info ${whitelist.id} [reason]\`\`\`\nTo decline type \`\`\`!decline ${whitelist.id} [reason]\`\`\``
       );
       break;
+    case "ACCEPTED":
+      await whitelistUser(whitelist.displayName);
+      break;
   }
 });
+
+async function whitelistUser(displayName) {
+  const serverResults = await fetch(
+    "https://panel.madhouseminers.com/api/application/servers",
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.PANEL_APPLICATION_KEY}`,
+        "Content-type": "application/json",
+        Accept: "Application/vnd.pterodactyl.v1+json",
+      },
+    }
+  );
+  const servers = await serverResults.json();
+  for (const server of servers.data) {
+    await fetch(
+      `https://panel.madhouseminers.com/api/client/servers/${server.attributes.identifier}/command`,
+      {
+        method: "POST",
+        body: JSON.stringify({ command: `/whitelist ${displayName}` }),
+        headers: {
+          Authorization: `Bearer ${process.env.PANEL_CLIENT_KEY}`,
+          "Content-type": "application/json",
+          Accept: "Application/vnd.pterodactyl.v1+json",
+        },
+      }
+    );
+  }
+}

@@ -1,6 +1,7 @@
 import { Client } from "discord.js";
 import whitelist from "./commands/whitelist";
 import dns from "./commands/dns";
+import features from "./commands/features";
 
 const discord = new Client();
 
@@ -19,6 +20,9 @@ discord.on("message", (message) => {
   switch (command.toLowerCase()) {
     case "ping":
       message.reply("Pong!");
+      break;
+    case "features":
+      features(message);
       break;
     case "accept":
     case "info":
