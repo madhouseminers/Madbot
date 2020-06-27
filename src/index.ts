@@ -99,7 +99,7 @@ async function whitelistUser(displayName) {
       `https://panel.madhouseminers.com/api/client/servers/${server.attributes.identifier}/command`,
       {
         method: "POST",
-        body: JSON.stringify({ command: `/whitelist ${displayName}` }),
+        body: JSON.stringify({ command: `/whitelist add ${displayName}` }),
         headers: {
           Authorization: `Bearer ${process.env.PANEL_CLIENT_KEY}`,
           "Content-type": "application/json",
