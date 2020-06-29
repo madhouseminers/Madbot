@@ -1,5 +1,6 @@
 import { Client } from "discord.js";
 import whitelist from "./commands/whitelist";
+import whitelistFetch from "./commands/whitelistFetch";
 import dns from "./commands/dns";
 import features from "./commands/features";
 
@@ -23,6 +24,11 @@ discord.on("message", (message) => {
       break;
     case "features":
       features(message);
+      break;
+    case "whitelist":
+      if (message.channel.id === process.env.DISCORD_CHANNEL) {
+        whitelistFetch(commandPieces, message);
+      }
       break;
     case "accept":
     case "info":

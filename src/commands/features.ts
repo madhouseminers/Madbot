@@ -4,6 +4,7 @@ export default async (msg: Message) => {
   const features = [
     "Whitelist Application Notification",
     "Whitelist Application Feedback",
+    "Whitelist Application Fetching",
     "Auto Whitelist on Accept",
     "DNS Management",
   ];
