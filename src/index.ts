@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
+import "./discord";
 
-export async function whitelistUser(displayName) {
+export async function whitelistUser(displayName: string) {
   const serverResults = await fetch(
     "https://panel.madhouseminers.com/api/application/servers",
     {

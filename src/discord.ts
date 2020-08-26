@@ -47,6 +47,7 @@ discord.on("message", (message) => {
 
 discord
   .login(process.env.DISCORD_TOKEN)
-  .then(() => console.log("Logged into discord"));
+  .then(() => console.log("Logged into discord"))
+  .catch(console.log);
 
 export default discord;

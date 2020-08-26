@@ -20,7 +20,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "apollo-link-ws": "^1.0.20",
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.3.1",
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
     "moment": "^2.27.0",
