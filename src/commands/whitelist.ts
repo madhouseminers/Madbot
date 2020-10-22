@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import gql from "graphql-tag";
 import { apolloClient } from "../graphql";
+import { whitelistUser } from "..";
 
 export default async (outcome, params, msg: Message) => {
   const formatErrorMessage = `The format is \`!${outcome} [id] [reason]\`. Please try again`;
@@ -34,6 +35,7 @@ export default async (outcome, params, msg: Message) => {
     switch (outcome) {
       case "accept":
         remoteOutcome = "ACCEPTED";
+        whitelistUser(displayName);
         break;
       case "info":
         remoteOutcome = "REQUEST_FOR_INFO";

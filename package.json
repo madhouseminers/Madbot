@@ -20,13 +20,13 @@
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "apollo-link-ws": "^1.0.20",
-    "discord.js": "^12.2.0",
-    "graphql": "^15.1.0",
-    "graphql-tag": "^2.10.3",
+    "discord.js": "^12.3.1",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
     "moment": "^2.27.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "subscriptions-transport-ws": "^0.9.17",
-    "ws": "^7.3.0"
+    "ws": "^7.3.1"
   },
   "devDependencies": {
     "@types/node": "^14.0.13",
